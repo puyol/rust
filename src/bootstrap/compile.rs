@@ -553,6 +553,9 @@ pub fn rustc_cargo_env(builder: &Builder, cargo: &mut Command) {
     if builder.config.rustc_parallel_queries {
         cargo.env("RUSTC_PARALLEL_QUERIES", "1");
     }
+    if builder.config.rust_codegen_polly_by_default {
+        cargo.env("RUSTC_FORCE_USE_POLLY", "1");
+    }
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]

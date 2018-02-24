@@ -346,6 +346,10 @@
 # Whether to deny warnings in crates
 #deny-warnings = true
 
+# Use polyhedral optimizations by default.  Note, enabling this on a build of
+# LLVM which lacks Polly (or only has a shared version) *won't* error.
+#use-polly-by-default = false
+
 # =============================================================================
 # Options for specific targets
 #

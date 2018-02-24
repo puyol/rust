@@ -103,6 +103,7 @@ pub struct Config {
     pub rust_dist_src: bool,
     pub rust_codegen_backends: Vec<Interned<String>>,
     pub rust_codegen_backends_dir: String,
+    pub rust_codegen_polly_by_default: bool,
 
     pub build: Interned<String>,
     pub hosts: Vec<Interned<String>>,
@@ -306,6 +307,7 @@ struct Rust {
     wasm_syscall: Option<bool>,
     lld: Option<bool>,
     deny_warnings: Option<bool>,
+    use_polly_by_default: Option<bool>,
 }
 
 /// TOML representation of how each build target is configured.
@@ -537,6 +539,10 @@ impl Config {
                 Some(n) => config.rust_codegen_units = Some(n),
                 None => {}
             }
+
+            config.rust_codegen_polly_by_default = rust
+              .use_polly_by_default
+              .unwrap_or(false);
         }
 
         if let Some(ref t) = toml.target {
