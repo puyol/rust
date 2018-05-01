@@ -1291,6 +1291,9 @@ options! {DebuggingOptions, DebuggingSetter, basic_debugging_options,
           "make the current crate share its generic instantiations"),
     chalk: bool = (false, parse_bool, [TRACKED],
           "enable the experimental Chalk-based trait solving engine"),
+    polly: bool = (option_env!("RUSTC_FORCE_USE_POLLY").is_some(),
+                   parse_bool, [UNTRACKED], "Run the Polly polyhedral \
+           model optimization passes."),
 }
 
 pub fn default_lib_output() -> CrateType {
